@@ -1,42 +1,53 @@
 import pandas as pd
+
+data = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_어린이집.csv", encoding="cp949")
 pd.set_option("display.max_rows", None)
-# csv파일 불러오기
-csv = pd.read_csv('C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/인천광역시 중구_카페 및 커피숍 현황_20210805.csv',encoding='cp949')
-print(csv.head())
-
-# 데이터프레임 주소값 추출
-address= csv['소재지도로명주소']
-print(address.head())
+# pd.set_option("display.max_columns", None)
 
 
-# 주소 데이터 깔끔하게 다듬기
-for i in range(len(address)):
-    a = address[i].split(' ')
-    address[i] = " ".join(a[0:4])
-print(address.head())
+# for i in [1383, 1354, 1339]:
+#     split_data = address[i].split(" ")
+#     del split_data[5:]
+#     address[i] = " ".join(split_data)
+#
+# address[320] = "전라북도 전주시 덕진구 송천중앙로 100-3"
+# address[1115] = "전라북도 남원시 수철길 4-14"
 
-# address = csv["소재지도로명주소"][1]
-#
-# ###### 도로명주소 위도 경도 값으로 바꿔주기 ########
-# from geopy.geocoders import Nominatim
-# geo_local = Nominatim(user_agent='South Korea')
-# # 위도, 경도 반환하는 함수
-# def geocoding(address):
-#     geo = geo_local.geocode(address)
-#     x_y = [geo.latitude, geo.longitude]
-#     return x_y
-#
-#
-#
-#
-# #####주소를 위,경도 값으로 변환하기 #####
-# latitude = []
-# longitude = []
-#
-# for i in address:
-#     latitude.append(geocoding(i)[0])
-#     longitude.append(geocoding(i)[1])
-#
-# #####Dataframe만들기######
-# address_df = pd.DataFrame({'카페이름': csv['사업장명'],'상세주소':csv['소재지도로명주소'],'주소':address,'위도':latitude,'경도':longitude})
-# print(address_df)
+
+# addr = data["소재지도로명주소"]
+# addr.remove(0)
+# print(addr)
+
+
+for i in range(len(addr)):
+    addr = addr.drop(26, axis=0)
+    split_data = addr[i].split(" ")
+    if len(split_data) == 4:
+        addr[i] = " ".join(split_data[2:])
+    else:
+        addr[i] = " ".join(split_data[3:])
+
+print(addr)
+from geopy.geocoders import Nominatim
+geolocator = Nominatim(user_agent='South Korea')
+
+try:
+    def geocoding(addr):
+        geo = geolocator.geocode(addr)
+        x_y = [geo.latitude, geo.longitude]
+        return x_y
+
+    latitude = []
+    longitude = []
+
+    for i in addr:
+        latitude.append(geocoding(i)[0])
+        longitude.append(geocoding(i)[1])
+
+    address_df = pd.DataFrame({'위도': latitude, '경도': longitude})
+    print(address_df)
+except AttributeError:
+    print(addr[i])
+    pass
+location = geolocator.geocode("내원당길 70-15")
+print((location.latitude, location.longitude))
