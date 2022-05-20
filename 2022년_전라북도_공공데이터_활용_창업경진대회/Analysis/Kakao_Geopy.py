@@ -23,7 +23,7 @@ FileName = "C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_�
 def GetData(FileName):
     global addr, data
 
-    data = pd.read_csv(FileName, encoding="cp949")
+    data = pd.read_csv(FileName, encoding="utf-8-sig")
     addr = data["소재지도로명주소"].copy()
 
     for i in [1383, 1354, 1339]:
@@ -64,4 +64,4 @@ for i in range(len(GetData(FileName))):
 data["위도"] = latitudes
 data["경도"] = longitudes
 
-data.to_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_어린이집.csv", index=False)
+data.to_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_어린이집.csv", encoding="utf-8-sig")
