@@ -16,7 +16,7 @@ for i in range(len(address)):
 print(address)
 
 
-from geopy.geocoders import Nominatim
+from Geopy_Module.geocoders import Nominatim
 geo_local = Nominatim(user_agent='South Korea')
 
 
@@ -36,3 +36,4 @@ for i in address:
 
 address_df = pd.DataFrame({'위도': latitude, '경도': longitude})
 print(address_df)
+565

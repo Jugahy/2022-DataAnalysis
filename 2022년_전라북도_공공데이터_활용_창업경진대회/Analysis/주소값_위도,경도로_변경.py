@@ -1,5 +1,5 @@
 import pandas as pd
-from geopy.geocoders import Nominatim
+from Geopy_Module.geocoders import Nominatim
 geo_local = Nominatim(user_agent='South Korea')
 
 data = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_어린이집.csv", encoding="cp949")
