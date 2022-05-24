@@ -2,10 +2,11 @@ import pandas as pd
 import mapboxgl
 import json
 from mapboxgl.viz import *
+import os
 from mapboxgl.utils import df_to_geojson
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/인천광역시 중구_카페 및 커피숍 현황_20210805.csv", encoding="utf-8-sig")
-print(df)
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/toilet_seoul.csv", encoding="utf-8-sig")
+# print(df)
 
 geo_data = df_to_geojson(
     df=df,
@@ -13,5 +14,15 @@ geo_data = df_to_geojson(
     lon='경도',
     # filename = "data/toilet_seoul.geojson"
 )
-
-type(geo_data)
+print(geo_data)
+# token = "pk.eyJ1IjoiZ2FuMTIwNSIsImEiOiJjbDNqbjUzeHUwOTRtM2JvNDNxcG1yNGdxIn0.4WjLZBjrgSaw3MgSur6wQw"
+# center = [126.986, 37.565]
+#
+# viz = CircleViz(
+#     geo_data,
+#     access_token=token,
+#     center=center,
+#     zoom=10
+# )
+#
+# viz.show()
