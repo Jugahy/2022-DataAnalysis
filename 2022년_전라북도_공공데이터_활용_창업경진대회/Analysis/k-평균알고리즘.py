@@ -94,7 +94,9 @@ for w in range(100):
     else:
         remember_group = group
 
-# for i in range(len(data)):
-#     plt.scatter(data[i][0], data[i][1], color="black")
-#
-# plt.show()
+for i in range(len(data)):
+    plt.scatter(data[i][0], data[i][1], color="black")
+
+plt.scatter(new_one_mid_x, new_one_mid_y, color="red")
+plt.scatter(new_two_mid_x, new_two_mid_y, color="red")
+plt.show()
