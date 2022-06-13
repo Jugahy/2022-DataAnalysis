@@ -25,7 +25,7 @@ for i, j in zip(df["위도"], df["경도"]):
 
 print(data)
 # 군집 선택
-k = [0, 4]
+k = [4, 5]
 
 # 새로운 평균값
 one_mid_x = 0
@@ -54,7 +54,9 @@ one_distance = []
 two_distance = []
 
 # 계속해서 group 유지하게 만드는 연산
+count = 0
 for w in range(100):
+    count+=1
 
     # 새로운 평균값 구하기
     for i in range(len(group)):
@@ -106,7 +108,7 @@ print("군집 2와의 거리 :", two_distance)
 print("소속될 군집 :", group)
 print("군집1의 x좌표 : %.2f, 군집1의 y좌표 : %.2f" % (new_one_mid_x, new_one_mid_y))
 print("군집2의 x좌표 : %.2f, 군집2의 y좌표 : %.2f" % (new_two_mid_x, new_two_mid_y))
-
+print(count)
 
 # for i in range(len(data)):
 #     plt.scatter(data[i][0], data[i][1], color="black")

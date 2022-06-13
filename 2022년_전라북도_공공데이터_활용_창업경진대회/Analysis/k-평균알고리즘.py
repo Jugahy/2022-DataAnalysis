@@ -39,9 +39,10 @@ remember_group = group
 # group 뽑았으니 리스트 비워주기
 one_distance = []
 two_distance = []
-
+count = 0
 # 계속해서 group 유지하게 만드는 연산
 for w in range(100):
+    count+=1
 
     # 새로운 평균값 구하기
     for i in range(len(group)):
@@ -87,6 +88,7 @@ for w in range(100):
         print("소속될 군집 :", group)
         print("군집1의 x좌표 : %.2f, 군집1의 y좌표 : %.2f" % (new_one_mid_x, new_one_mid_y))
         print("군집2의 x좌표 : %.2f, 군집2의 y좌표 : %.2f" % (new_two_mid_x, new_two_mid_y))
+        print(count)
 
         break
 
