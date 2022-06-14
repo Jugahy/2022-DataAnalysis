@@ -19,11 +19,13 @@ group = []
 remember_group = []
 data = []
 city = ["군산시", "익산시", "진안군", "완주군", "무주군", "장수군", "김제시", "전주시", "정읍시", "부안군", "임실군", "남원시", "고창군", "순창군"]
+
 # 좌표 표현
 for i, j in zip(df["위도"], df["경도"]):
     data.append([i, j])
 
 print(data)
+
 # 군집 선택
 k = [4, 5]
 
@@ -53,10 +55,12 @@ remember_group = group
 one_distance = []
 two_distance = []
 
-# 계속해서 group 유지하게 만드는 연산
+# 몇 번 시행하여 군집 나누는지 보기
 count = 0
+
+# 계속해서 group 유지하게 만드는 연산
 for w in range(100):
-    count+=1
+    count += 1
 
     # 새로운 평균값 구하기
     for i in range(len(group)):
@@ -94,15 +98,24 @@ for w in range(100):
         else:
             group.append(1)
 
+    for idx, i in enumerate(city):
+        plt.scatter(data[idx][0], data[idx][1], color="black")
+        plt.annotate(i, (data[idx][0], data[idx][1]))
+
+    plt.scatter(new_one_mid_x, new_one_mid_y, color="red")
+    plt.scatter(new_two_mid_x, new_two_mid_y, color="red")
+    plt.show()
+
     # 군집의 변화가 없다면 멈춤
     if remember_group == group:
+        print("전 그룹과 현재 그룹이 같으므로 프로그램 종료")
         break
 
     # 현재 군집 기억해주는 군집
     else:
         remember_group = group
 
-print("전 그룹과 현재 그룹이 같으므로 프로그램 종료")
+
 print("군집 1과의 거리 :", one_distance)
 print("군집 2와의 거리 :", two_distance)
 print("소속될 군집 :", group)
@@ -113,11 +126,10 @@ print(count)
 # for i in range(len(data)):
 #     plt.scatter(data[i][0], data[i][1], color="black")
 
-for idx, i in enumerate(city):
-    plt.scatter(data[idx][0], data[idx][1], color="black")
-    plt.annotate(i, (data[idx][0], data[idx][1]))
-
-plt.scatter(new_one_mid_x, new_one_mid_y, color="red")
-plt.scatter(new_two_mid_x, new_two_mid_y, color="red")
-plt.show()
-
+# for idx, i in enumerate(city):
+#     plt.scatter(data[idx][0], data[idx][1], color="black")
+#     plt.annotate(i, (data[idx][0], data[idx][1]))
+#
+# plt.scatter(new_one_mid_x, new_one_mid_y, color="red")
+# plt.scatter(new_two_mid_x, new_two_mid_y, color="red")
+# plt.show()
