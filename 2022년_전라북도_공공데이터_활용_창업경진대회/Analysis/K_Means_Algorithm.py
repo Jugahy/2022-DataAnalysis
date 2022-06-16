@@ -115,7 +115,6 @@ for w in range(100):
     else:
         remember_group = group
 
-
 print("군집 1과의 거리 :", one_distance)
 print("군집 2와의 거리 :", two_distance)
 print("소속될 군집 :", group)
