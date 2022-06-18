@@ -7,7 +7,7 @@ def korean():
 
 
 data = [[1, 2], [3, 5], [3, 2], [2, 1], [4, 2], [2, 3], [4, 4], [4, 5], [5, 5], [5, 1]]
-k = [0, 4, 6]
+k = [0, 4]
 
 
 
@@ -72,37 +72,42 @@ def mid():
 # 새로운 평균값의 좌표를 이용할 때 군집 나누는 함수
 def k_cluster():
     import math
-    global group, reremember_group
-
-    distance = []
-    group = []
+    global group
     reremember_group = []
-
-    for i in range(len(data)):
-        distance.append([])
-
-        for j in new_mid:
-            distance[i].append(math.sqrt((data[i][0] - j[0]) ** 2 + (data[i][1] - j[1]) ** 2))
-
-    for i in range(len(data)):
-        group.append(k[distance[i].index(min(distance[i]))])
-
-    if remember_group == group:
-        print(new_mid)
-        print(group)
+    while True:
+        distance = []
+        group = []
 
 
+        for i in range(len(data)):
+            distance.append([])
 
-    reremember_group = group
+            for j in new_mid:
+                distance[i].append(math.sqrt((data[i][0] - j[0]) ** 2 + (data[i][1] - j[1]) ** 2))
+        print("distance :",distance)
+        for i in range(len(data)):
+            group.append(k[distance[i].index(min(distance[i]))])
+        print(1, group, reremember_group)
+        if remember_group == group:
+            print(new_mid)
+            break
+        elif reremember_group == group:
+            print(new_mid)
+            break
+        else:
+            reremember_group = group
+            print("mid :", mid())
 
-    return group, reremember_group
+    return group
 
-
-def main():
-    cluster()
-    mid()
-    k_cluster()
-    if remember_group == group:
-        print(new_mid)
-        print()
-        break
+print(cluster())
+print(mid())
+print(k_cluster())
+# def main():
+#     cluster()
+#     mid()
+#     k_cluster()
+#     if remember_group == group:
+#         print(new_mid)
+#         print()
+#         break
