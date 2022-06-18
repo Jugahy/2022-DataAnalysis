@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
 def korean():
     from matplotlib import font_manager, rc
 
@@ -6,9 +9,12 @@ def korean():
     rc('font', family=font)
 
 
-data = [[1, 2], [3, 5], [3, 2], [2, 1], [4, 2], [2, 3], [4, 4], [4, 5], [5, 5], [5, 1]]
-k = [0, 4]
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전북_통합.csv", encoding="euc-kr")
+data = []
 
+for i in range(len(df)):
+    data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
+k = [1532, 1900, 5, 543, 10]
 
 
 # 데이터 형식 : [[위도1,경도1], [위도2,경도2], ...[위도n,경도n]]
@@ -48,6 +54,11 @@ def cluster():
 # 새로운 평균값 만드는 함수
 def mid():
     global new_mid
+    global remember_group
+    try:
+        remember_group = group
+    except NameError:
+        pass
     all_mid = []
     new_mid = []
 
@@ -103,6 +114,14 @@ def k_cluster():
 print(cluster())
 print(mid())
 print(k_cluster())
+
+for i in range(len(data)):
+    plt.scatter(data[i][0], data[i][1], color="black")
+
+for i in range(len(new_mid)):
+    plt.scatter(new_mid[i][0], new_mid[i][1], color="red")
+
+plt.show()
 # def main():
 #     cluster()
 #     mid()
