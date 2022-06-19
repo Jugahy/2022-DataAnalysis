@@ -4,25 +4,22 @@ import json
 from mapboxgl.viz import *
 import os
 from mapboxgl.utils import df_to_geojson
+import folium
+from folium.plugins import MarkerCluster
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/toilet_seoul.csv", encoding="utf-8-sig")
-# print(df)
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_유치원.csv", encoding="euc_kr")
 
-geo_data = df_to_geojson(
-    df=df,
-    lat='위도',
-    lon='경도',
-    # filename = "data/toilet_seoul.geojson"
-)
-print(geo_data)
-# token = "pk.eyJ1IjoiZ2FuMTIwNSIsImEiOiJjbDNqbjUzeHUwOTRtM2JvNDNxcG1yNGdxIn0.4WjLZBjrgSaw3MgSur6wQw"
-# center = [126.986, 37.565]
-#
-# viz = CircleViz(
-#     geo_data,
-#     access_token=token,
-#     center=center,
-#     zoom=10
-# )
-#
-# viz.show()
+m = folium.Map([35.716705, 127.144185],
+               zoom_start=17,
+               width=750,
+               height=500
+               )
+
+coord = df[["위도", "경도"]]
+
+marker_cluster = MarkerCluster().add_to(m)
+
+for lat, long in zip(coord["위도"], coord["경도"]):
+    folium.Marker([lat, long], icon=folium.Icon(color="green")).add_to(marker_cluster)
+
+m

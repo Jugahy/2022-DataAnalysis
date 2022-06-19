@@ -14,7 +14,7 @@ data = []
 
 for i in range(len(df)):
     data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
-k = [1532, 1900, 5, 543, 10]
+k = [150, 160, 300, 2000]
 
 
 # 데이터 형식 : [[위도1,경도1], [위도2,경도2], ...[위도n,경도n]]
@@ -85,7 +85,9 @@ def k_cluster():
     import math
     global group
     reremember_group = []
+    count = 0
     while True:
+        count+=1
         distance = []
         group = []
 
@@ -95,25 +97,31 @@ def k_cluster():
 
             for j in new_mid:
                 distance[i].append(math.sqrt((data[i][0] - j[0]) ** 2 + (data[i][1] - j[1]) ** 2))
-        print("distance :",distance)
+
         for i in range(len(data)):
             group.append(k[distance[i].index(min(distance[i]))])
-        print(1, group, reremember_group)
+
         if remember_group == group:
-            print(new_mid)
+            print(count, "번째 그룹:", group)
+            print(count, "번째 평균갑:", new_mid)
+            print("count", count)
             break
         elif reremember_group == group:
-            print(new_mid)
+            print(count, "번째 그룹:", group)
+            print(count, "번째 평균갑:", new_mid)
+            print("count", count)
             break
         else:
+            print(count, "번째 그룹:", group)
+            print(count, "번째 평균값:", new_mid)
             reremember_group = group
-            print("mid :", mid())
+            mid()
 
     return group
 
-print(cluster())
-print(mid())
-print(k_cluster())
+cluster()
+mid()
+k_cluster()
 
 for i in range(len(data)):
     plt.scatter(data[i][0], data[i][1], color="black")
@@ -122,11 +130,4 @@ for i in range(len(new_mid)):
     plt.scatter(new_mid[i][0], new_mid[i][1], color="red")
 
 plt.show()
-# def main():
-#     cluster()
-#     mid()
-#     k_cluster()
-#     if remember_group == group:
-#         print(new_mid)
-#         print()
-#         break
+
