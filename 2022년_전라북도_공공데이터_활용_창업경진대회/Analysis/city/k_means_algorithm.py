@@ -1,6 +1,3 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-
 def korean():
     from matplotlib import font_manager, rc
 
@@ -8,13 +5,15 @@ def korean():
     font = font_manager.FontProperties(fname=font_path).get_name()
     rc('font', family=font)
 
+import matplotlib.pyplot as plt
+import pandas as pd
 
 df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전북_통합.csv", encoding="euc-kr")
 data = []
 
 for i in range(len(df)):
     data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
-k = [150, 160, 300, 2000]
+k = [150, 160, 300, 534, 637, 1003, 1209, 1489, 1890, 2000]
 
 
 # 데이터 형식 : [[위도1,경도1], [위도2,경도2], ...[위도n,경도n]]
@@ -124,10 +123,10 @@ mid()
 k_cluster()
 
 for i in range(len(data)):
-    plt.scatter(data[i][0], data[i][1], color="black")
+    plt.scatter(data[i][1], data[i][0], color="black")
 
 for i in range(len(new_mid)):
-    plt.scatter(new_mid[i][0], new_mid[i][1], color="red")
+    plt.scatter(new_mid[i][1], new_mid[i][0], color="red")
 
 plt.show()
 
