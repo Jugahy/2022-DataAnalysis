@@ -8,12 +8,13 @@ def korean():
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전북_통합.csv", encoding="euc-kr")
-data = []
+# df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전북_통합.csv", encoding="euc-kr")
+data = [[1, 2], [1, 1], [3, 2], [2, 1], [2, 2], [2, 3], [8, 6], [1, 8], [7, 7], [8, 8], [4, 8], [6, 2], [3, 8], [5, 6],
+        [4, 1]]
 
-for i in range(len(df)):
-    data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
-k = [150, 160, 300, 534, 637, 1003, 1209, 1489, 1890, 2000]
+# for i in range(len(df)):
+#     data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
+k = [0, 9]
 
 
 # 데이터 형식 : [[위도1,경도1], [위도2,경도2], ...[위도n,경도n]]
@@ -46,6 +47,7 @@ def cluster():
         group.append(k[distance[i].index(min(distance[i]))])
 
     remember_group = group
+    print(distance)
 
     return remember_group
 
@@ -96,7 +98,7 @@ def k_cluster():
 
             for j in new_mid:
                 distance[i].append(math.sqrt((data[i][0] - j[0]) ** 2 + (data[i][1] - j[1]) ** 2))
-
+        print(distance)
         for i in range(len(data)):
             group.append(k[distance[i].index(min(distance[i]))])
 
