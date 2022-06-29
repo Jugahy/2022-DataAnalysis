@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import font_manager, rc
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/피해아동발견율.csv", encoding="euc-kr")
+df = pd.read_csv("/Data/공공데이터포털/피해아동발견율.csv", encoding="euc-kr")
 print(df)
 font_path = "C:/Windows/Fonts/NGULIM.TTF"
 font = font_manager.FontProperties(fname=font_path).get_name()

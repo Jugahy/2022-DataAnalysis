@@ -17,9 +17,9 @@ def get_location(address):
     return crd
 
 
-FileName = "C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/jjpark.csv"
+FileName = "C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/busan/부산.csv"
 data = pd.read_csv(FileName, encoding="euc-kr")
-addr = data["주 소"].copy()
+addr = data["소재지"].copy()
 
 latitudes = []
 longitudes = []
@@ -47,4 +47,4 @@ for i in range(len(addr)):
 data["위도"] = latitudes
 data["경도"] = longitudes
 
-data.to_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/jjpark.csv", encoding="euc-kr")
+data.to_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/busan/부산.csv", encoding="euc-kr")

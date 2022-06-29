@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import font_manager, rc
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/시도별_신고접수_건수.csv", encoding="euc-kr")
+df = pd.read_csv("/Data/공공데이터포털/시도별_신고접수_건수.csv", encoding="euc-kr")
 print(df["all"])
 df["prob"] = df["all"] / df["allkid"] * 1000
 print(df)

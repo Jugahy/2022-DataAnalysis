@@ -10,7 +10,7 @@ font = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font)
 
 # 전라북도 지역별 위도 경도 읽어오기
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/jj.csv", encoding="euc-kr")
+df = pd.read_csv("/Data/공공데이터포털/jj.csv", encoding="euc-kr")
 
 # 리스트 생성
 one_distance = []

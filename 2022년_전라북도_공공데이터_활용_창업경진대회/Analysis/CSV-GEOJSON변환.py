@@ -7,7 +7,7 @@ from mapboxgl.utils import df_to_geojson
 import folium
 from folium.plugins import MarkerCluster
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/전라북도_유치원.csv", encoding="euc_kr")
+df = pd.read_csv("/Data/공공데이터포털/전라북도_유치원.csv", encoding="euc_kr")
 
 m = folium.Map([35.716705, 127.144185],
                zoom_start=17,
