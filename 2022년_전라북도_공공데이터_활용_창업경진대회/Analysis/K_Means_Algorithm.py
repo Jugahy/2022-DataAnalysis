@@ -10,7 +10,8 @@ font = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font)
 
 # 전라북도 지역별 위도 경도 읽어오기
-df = pd.read_csv("/Data/공공데이터포털/jj.csv", encoding="euc-kr")
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/jj.csv", encoding="euc-kr")
+# weight_df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/행정구역_시군구_별_주민등록세대수_20220629145146.csv")
 
 # 리스트 생성
 one_distance = []
@@ -18,7 +19,10 @@ two_distance = []
 group = []
 remember_group = []
 data = []
-city = ["군산시", "익산시", "진안군", "완주군", "무주군", "장수군", "김제시", "전주시", "정읍시", "부안군", "임실군", "남원시", "고창군", "순창군"]
+city = ["군산시", "익산시", "진안군", "완주군", "무주군", "장수군", "김제시", "전주시",  "정읍시", "부안군", "임실군", "남원시", "고창군", "순창군"]
+
+# 가중치 : 전라북도 전체 인구 수 / 각 지역별 인구수
+weight = [6.951484721, 6.542507978, 62.72185041, 19.20915828, 65.83518604, 73.43111762, 19.90962998, 2.894802, 15.6741224, 30.75363312, 56.67391015, 21.44294981, 29.64196587, 60.66503059]
 
 # 좌표 표현
 for i, j in zip(df["위도"], df["경도"]):
@@ -26,8 +30,16 @@ for i, j in zip(df["위도"], df["경도"]):
 
 print(data)
 
-# 군집 선택
-k = [4, 5]
+# 군집 선택 (0,13)
+k = [4, 12]
+
+for idx, i in enumerate(city):
+    plt.scatter(data[idx][1], data[idx][0], color="black")
+    plt.annotate(i, (data[idx][1], data[idx][0]))
+
+plt.scatter(data[k[0]][1], data[k[0]][0], color="red")
+plt.scatter(data[k[1]][1], data[k[1]][0], color="red")
+plt.show()
 
 # 새로운 평균값
 one_mid_x = 0
@@ -39,8 +51,8 @@ two_mid_y = 0
 for i in range(len(data)):
 
     # 군집 나누는 기준
-    one_distance.append(math.sqrt((data[i][0] - data[k[0]][0]) ** 2 + (data[i][1] - data[k[0]][1]) ** 2))
-    two_distance.append(math.sqrt((data[i][0] - data[k[1]][0]) ** 2 + (data[i][1] - data[k[1]][1]) ** 2))
+    one_distance.append(weight[4] * math.sqrt((data[i][0] - data[k[0]][0]) ** 2 + (data[i][1] - data[k[0]][1]) ** 2))
+    two_distance.append(weight[12] * math.sqrt((data[i][0] - data[k[1]][0]) ** 2 + (data[i][1] - data[k[1]][1]) ** 2))
 
     # 군집 나누기
     if one_distance[i] > two_distance[i]:
@@ -92,6 +104,12 @@ for w in range(100):
         one_distance.append(math.sqrt((data[i][0] - new_one_mid_x) ** 2 + (data[i][1] - new_one_mid_y) ** 2))
         two_distance.append(math.sqrt((data[i][0] - new_two_mid_x) ** 2 + (data[i][1] - new_two_mid_y) ** 2))
 
+        print("군집 1과의 거리 :", one_distance)
+        print("군집 2와의 거리 :", two_distance)
+        print("소속될 군집 :", group)
+        print("군집1의 x좌표 : %.2f, 군집1의 y좌표 : %.2f" % (new_one_mid_x, new_one_mid_y))
+        print("군집2의 x좌표 : %.2f, 군집2의 y좌표 : %.2f" % (new_two_mid_x, new_two_mid_y))
+
         # 군집 나누기
         if one_distance[i] > two_distance[i]:
             group.append(2)
@@ -99,11 +117,11 @@ for w in range(100):
             group.append(1)
 
     for idx, i in enumerate(city):
-        plt.scatter(data[idx][0], data[idx][1], color="black")
-        plt.annotate(i, (data[idx][0], data[idx][1]))
+        plt.scatter(data[idx][1], data[idx][0], color="black")
+        plt.annotate(i, (data[idx][1], data[idx][0]))
 
-    plt.scatter(new_one_mid_x, new_one_mid_y, color="red")
-    plt.scatter(new_two_mid_x, new_two_mid_y, color="red")
+    plt.scatter(new_one_mid_y, new_one_mid_x, color="red")
+    plt.scatter(new_two_mid_y, new_two_mid_x, color="red")
     plt.show()
 
     # 군집의 변화가 없다면 멈춤
