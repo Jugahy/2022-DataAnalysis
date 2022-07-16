@@ -32,7 +32,7 @@ for i in range(len(df)):
     name.append(r)
 
     while True:
-        remember_r = solution(remember_r)
         if remember_r.find("fac_n_add") == -1:
             break
-    print(name)
+        remember_r = solution(remember_r)
+print(len(name))
