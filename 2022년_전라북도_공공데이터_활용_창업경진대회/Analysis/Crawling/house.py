@@ -15,6 +15,7 @@ def solution(remember_r):
     return remember_r
 
 df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/pnu.csv", encoding="euc-kr")
+dff = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/child_houst.csv", encoding="euc-kr")
 
 
 for i in range(len(df)):
@@ -23,16 +24,27 @@ for i in range(len(df)):
     result = requests.get(URL)
     soup = BeautifulSoup(result.text, "html.parser")
 
-    a = str(soup)
-    idx = a.find("fac_n_add")
-    r = a[idx + 12:]
-    remember_r = r
-    idx = r.find("}")
-    r = r[:idx - 1]
-    name.append(r)
+    if str(soup).find("fac_n_add") == -1:
+        pass
+    else:
+        a = str(soup)
+        idx = a.find("fac_n_add")
+        r = a[idx + 12:]
+        remember_r = r
+        idx = r.find("}")
+        r = r[:idx - 1]
+        name.append(r)
 
-    while True:
-        if remember_r.find("fac_n_add") == -1:
-            break
-        remember_r = solution(remember_r)
+        while True:
+            if remember_r.find("fac_n_add") == -1:
+                break
+            remember_r = solution(remember_r)
+
+print(name)
 print(len(name))
+
+dff["도로명"] = name
+
+dff.to_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/child_houst.csv", encoding="euc-kr")
+
+
