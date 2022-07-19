@@ -5,20 +5,20 @@ def korean():
     font = font_manager.FontProperties(fname=font_path).get_name()
     rc('font', family=font)
 
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import random
 
 data = []
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/통합/고창군_통합.csv", encoding="euc-kr")
+
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/통합/덕진구_통합.csv", encoding="euc-kr")
 
 for i in range(len(df)):
     data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
+print(data)
 
-
-k = list(random.sample(range(0,len(df)), k=26))
+k = list(range(0,100))
 
 
 # 데이터 형식 : [[위도1,경도1], [위도2,경도2], ...[위도n,경도n]]
@@ -94,9 +94,10 @@ def k_cluster():
     reremember_group = []
     count = 0
     while True:
-        count += 1
+        count+=1
         distance = []
         group = []
+
 
         for i in range(len(data)):
             distance.append([])
@@ -128,7 +129,6 @@ def k_cluster():
 
     return group
 
-
 cluster()
 mid()
 k_cluster()
@@ -143,3 +143,4 @@ for i in range(len(new_mid)):
         pass
 
 plt.show()
+

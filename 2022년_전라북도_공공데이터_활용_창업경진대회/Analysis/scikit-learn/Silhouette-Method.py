@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/전북_통합.csv", encoding="euc-kr")
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/child_house.csv", encoding="euc-kr")
 data = {"x" : df["경도"], "y" : df["위도"]}
 points = pd.DataFrame(data)
 
