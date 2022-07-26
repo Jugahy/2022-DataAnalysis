@@ -17,7 +17,7 @@ def get_location(address):
     return crd
 
 
-FileName = "C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/통합/고창군_통합.csv"
+FileName = "/Data/공공데이터포털/통합/고창군_통합.csv"
 data = pd.read_csv(FileName, encoding="euc-kr")
 addr = data["주소"].copy()
 # addr = ["전라북도 군산시 백토로 202","전라북도 전주시 완산구 팔달로 77","전라북도 전주시 덕진구 송천로 35-15","전라북도 익산시 인북로 112"]

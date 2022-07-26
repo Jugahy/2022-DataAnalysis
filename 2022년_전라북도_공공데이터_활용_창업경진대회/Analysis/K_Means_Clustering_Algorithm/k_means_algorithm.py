@@ -12,15 +12,16 @@ import random
 
 data = []
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/통합/고창군_통합.csv", encoding="euc-kr")
+df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/전북_통합.csv", encoding="euc-kr")
 
 for i in range(len(df)):
     data.append([df.loc[i]["위도"], df.loc[i]["경도"]])
+# data = [[1,1], [1,2], [1,3], [1,4], [1,5], [2,1], [2,2], [2,3], [2,4], [2,5], [3,1], [3,2], [3,3], [3,4], [3,5], [4,1], [4,2], [4,3], [4,4], [4,5], [5,1], [5,2], [5,3], [5,4], [5,5],[20,20], [20,21], [20,22]]
+
+k = list(random.sample(range(0,len(df)), k=10))
 
 
-k = list(random.sample(range(0,len(df)), k=26))
-
-
+# k = [0,2,4,5,25,27,26]
 # 데이터 형식 : [[위도1,경도1], [위도2,경도2], ...[위도n,경도n]]
 # k 형식 : data의 값 중 원하는 좌표의 인덱스 [0,8]
 def put(data, k):
@@ -114,6 +115,7 @@ def k_cluster():
             print(count, "번째 그룹:", group)
             print(count, "번째 평균갑:", new_mid)
             print("count", count)
+
             break
         elif reremember_group == group:
             print(count, "번째 그룹:", group)
@@ -126,11 +128,21 @@ def k_cluster():
             reremember_group = group
             mid()
 
+
     return group
 
 
 cluster()
 mid()
+for i in range(len(data)):
+    plt.scatter(data[i][1], data[i][0], color="black")
+
+for i in range(len(new_mid)):
+    try:
+        plt.scatter(new_mid[i][1], new_mid[i][0], color="red")
+    except IndexError:
+        pass
+plt.show()
 k_cluster()
 
 for i in range(len(data)):

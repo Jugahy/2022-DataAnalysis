@@ -10,7 +10,7 @@ rc('font', family=font)
 
 data = []
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/jj.csv", encoding="euc-kr")
+df = pd.read_csv("/Data/공공데이터포털/jj.csv", encoding="euc-kr")
 
 k = [4, 12]
 weight = [0.143854161, 0.152846585, 0.015943407, 0.052058502, 0.015189446, 0.013618205, 0.050226951, 0.345446743, 0.063799425, 0.032516483, 0.017644803, 0.046635375, 0.033735954, 0.016483961]

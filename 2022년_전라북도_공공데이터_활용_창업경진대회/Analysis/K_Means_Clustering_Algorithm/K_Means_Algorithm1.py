@@ -10,7 +10,7 @@ font = font_manager.FontProperties(fname=font_path).get_name()
 rc('font', family=font)
 
 # 전라북도 지역별 위도 경도 읽어오기
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/jj.csv", encoding="euc-kr")
+df = pd.read_csv("/Data/공공데이터포털/jj.csv", encoding="euc-kr")
 # weight_df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/행정구역_시군구_별_주민등록세대수_20220629145146.csv")
 
 # 리스트 생성
@@ -143,7 +143,7 @@ print(count)
 # for i in range(len(data)):
 #     plt.scatter(data[i][0], data[i][1], color="black")
 
-# for idx, i in enumerate(city):
+# for idx, i in enumerate(K_Means_Clustering_Algorithm):
 #     plt.scatter(data[idx][0], data[idx][1], color="black")
 #     plt.annotate(i, (data[idx][0], data[idx][1]))
 #

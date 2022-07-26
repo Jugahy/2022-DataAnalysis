@@ -14,8 +14,8 @@ def solution(remember_r):
     name.append(r)
     return remember_r
 
-df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/pnu.csv", encoding="euc-kr")
-dff = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/child_houst.csv", encoding="euc-kr")
+df = pd.read_csv("/Data/공공데이터포털/pnu.csv", encoding="euc-kr")
+dff = pd.read_csv("/Data/공공데이터포털/child_houst.csv", encoding="euc-kr")
 
 
 for i in range(len(df)):
