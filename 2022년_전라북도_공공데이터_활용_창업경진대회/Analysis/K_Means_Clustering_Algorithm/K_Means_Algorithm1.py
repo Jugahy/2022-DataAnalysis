@@ -13,7 +13,7 @@ rc('font', family=font)
 df = pd.read_csv("/Data/공공데이터포털/jj.csv", encoding="euc-kr")
 # weight_df = pd.read_csv("C:/Users/jugah/PycharmProjects/2022-DataAnalysis/Data/공공데이터포털/행정구역_시군구_별_주민등록세대수_20220629145146.csv")
 
-# 리스트 생성
+# 리스트 생성!
 one_distance = []
 two_distance = []
 group = []
