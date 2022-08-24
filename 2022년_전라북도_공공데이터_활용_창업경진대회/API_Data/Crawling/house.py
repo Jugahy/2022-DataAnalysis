@@ -40,8 +40,7 @@ for i in range(len(df)):
                 break
             remember_r = solution(remember_r)
 
-print(name)
-print(len(name))
+print(name, len(name))
 
 dff["도로명"] = name
 
